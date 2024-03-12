@@ -3,26 +3,28 @@
         PUBLIC "-//mybatis.org//DTD Config 3.0//EN"
         "http://mybatis.org/dtd/mybatis-3-config.dtd">
 <!--configuration核心配置文件-->
+
 <configuration>
+    <properties resource="db.properties"/>
     <settings>
         <setting name="logImpl" value="STDOUT_LOGGING"/>
     </settings>
-
-    <environments default="mysql">
-        <environment id="mysql">
+    <!-- 通过properties标签，读取java配置文件的内容 -->
+    <!-- 配置mybatis的环境信息 -->
+    <environments default="development">
+        <environment id="development">
+            <!-- 配置JDBC事务控制，由mtybatis进行管理 -->
             <transactionManager type="JDBC"/>
+            <!-- 配置数据源，采用dbcp连接池 -->
             <dataSource type="POOLED">
-                <property name="driver" value="com.mysql.cj.jdbc.Driver"/>
-                <property name="url"
-                          value="jdbc:mysql://localhost:3306/database?useSSl=trur&amp;sueUnicode=true&amp;characterEncoding=UTF-8&amp;serverTimezone=Asia/Shanghai"/>
-                <property name="username" value="root"/>
-                <property name="password" value="123456"/>
+                <property name="driver" value="${db.driver}"/>
+                <property name="url" value="${db.url}"/>
+                <property name="username" value="${db.username}"/>
+                <property name="password" value="${db.password}"/>
             </dataSource>
         </environment>
     </environments>
-
     <mappers>
         <mapper resource="UserMapper.xml"/>
     </mappers>
-
 </configuration>
