@@ -1,15 +1,7 @@
 package org.example.pojo;
 
-import jdk.jfr.BooleanFlag;
-
-
 public class User {
-    /*
-    陈志鹏
-    男
-    软件22.2班
-    200304050
-     */
+
     private Integer id;
     private String user_name;
     private String user_gender;
